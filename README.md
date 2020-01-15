@@ -35,3 +35,4 @@ When a player enters a new level/map the [Phaser Scene](https://photonstorm.gith
 But the current players in that map will not be loaded in that level.
 
 *See GIF example below*
+![Know bug example](https://github.com/aaron5670/PokeMMO-Online-Realtime-Multiplayer-Game/blob/master/docs/images/PokeMMO-know-bug.gif?raw=true)
