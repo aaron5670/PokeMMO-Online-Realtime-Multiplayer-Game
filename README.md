@@ -6,21 +6,16 @@
 // Clone this repository
 $ git clone https://github.com/aaron5670/PokeMMO-Online-Realtime-Multiplayer-Game.git
 
-// Go to the client folder
-$ cd client
+// Go to the client folder and install all modules
+$ cd client && npm install
 
-// Install all modules in the client folder
-$ npm install
-
-// Go to the server folder
-$ cd ../server
-
-// Install all modules in the server folder
-$ npm install
+// Go to the server folder and install all modules
+$ cd ../server && npm install
 
 // Start the server
 $ node server.js
 
-// Open a new terminal and go to client and start the webpack server
+// Open a new terminal and navigate to the client folder and start the webpack server
 $ cd client && npm start
 ```
+After successfully install go to [http://localhost:8080](http://localhost:8080/)
