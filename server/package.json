@@ -1,0 +1,29 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "npm init template for bootstraping an empty Colyseus project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "loadtest": "colyseus-loadtest loadtest/example.js --room my_room --numClients 2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/colyseus/create-colyseus/issues"
+  },
+  "homepage": "https://github.com/colyseus/create-colyseus#readme",
+  "devDependencies": {
+    "@colyseus/loadtest": "^0.11.0"
+  },
+  "dependencies": {
+    "@colyseus/monitor": "^0.11.0",
+    "@colyseus/social": "^0.10.2",
+    "colyseus": "^0.11.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1"
+  }
+}
