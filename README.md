@@ -7,8 +7,8 @@
 - [x] Multiple players can join the game
 - [x] Maps are can be created/edited with [Tiled Map Editor](https://www.mapeditor.org/)
 - [x] Multiple levels/maps
-- [] Pokémons added
-- [] Can going inside building (In progress)
+- [ ] Pokémons added
+- [ ] Can going inside building (In progress)
 
 ### How to install
 ```
