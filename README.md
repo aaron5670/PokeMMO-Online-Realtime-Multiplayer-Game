@@ -1,6 +1,8 @@
 # Simple realtime platform game build with Phaser.io
 **Simple realtime Pokemon game build with Phaser 3, Colyseus.io & Webpack 4.**
 
+![PokeMMO](https://github.com/aaron5670/PokeMMO-Online-Realtime-Multiplayer-Game/blob/master/docs/images/PokeMMO.gif?raw=true)
+
 ### How to install
 ```
 // Clone this repository
