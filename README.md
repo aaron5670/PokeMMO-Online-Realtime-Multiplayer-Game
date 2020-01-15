@@ -3,6 +3,13 @@
 
 ![PokeMMO](https://github.com/aaron5670/PokeMMO-Online-Realtime-Multiplayer-Game/blob/master/docs/images/PokeMMO.gif?raw=true)
 
+### Features & ToDo
+- [x] Multiple players can join the game
+- [x] Maps are can be created/edited with [Tiled Map Editor](https://www.mapeditor.org/)
+- [x] Multiple levels/maps
+- [] Pokémons added
+- [] Can going inside building (In progress)
+
 ### How to install
 ```
 // Clone this repository
@@ -22,3 +29,9 @@ $ cd client && npm start
 ```
 After successfully install go to [http://localhost:8080](http://localhost:8080/)
 
+### Known bugs
+**Online players won't load in new level (Needs help with this bug..)**\
+When a player enters a new level/map the [Phaser Scene](https://photonstorm.github.io/phaser3-docs/Phaser.Scene.html) reloads and a new tilemap will be loaded.
+But the current players in that map will not be loaded in that level.
+
+*See GIF example below*
