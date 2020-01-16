@@ -107,27 +107,19 @@ export class Scene2 extends Phaser.Scene {
                 if (data.event === 'PLAYER_CHANGED_MAP') {
                     console.log('PLAYER_CHANGED_MAP');
 
-                    // If another online player left current map
-                    if (data.sessionId !== room.sessionId) {
-                        console.log('Player left map!');
-                        if (onlinePlayers[data.sessionId]) {
-                            onlinePlayers[data.sessionId].destroy();
-                            delete onlinePlayers[data.sessionId];
+                    if (onlinePlayers[data.sessionId]) {
+                        onlinePlayers[data.sessionId].destroy();
+
+                        if (data.map === this.mapName && !onlinePlayers[data.sessionId].scene) {
+                            onlinePlayers[data.sessionId] = new OnlinePlayer({
+                                scene: this,
+                                playerId: data.sessionId,
+                                key: data.sessionId,
+                                map: data.map,
+                                x: data.x,
+                                y: data.y
+                            });
                         }
-                    }
-
-                    // If another online player joins current map
-                    if (data.sessionId !== room.sessionId) {
-                        console.log('Player joined new map!');
-
-                        onlinePlayers[data.sessionId] = new OnlinePlayer({
-                            scene: this,
-                            playerId: data.sessionId,
-                            key: data.sessionId,
-                            map: data.map,
-                            x: data.x,
-                            y: data.y
-                        });
                     }
                 }
             })
