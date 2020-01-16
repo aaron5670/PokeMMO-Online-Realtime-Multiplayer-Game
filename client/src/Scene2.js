@@ -45,30 +45,61 @@ export class Scene2 extends Phaser.Scene {
                 if (data.event === 'PLAYER_JOINED') {
                     console.log('PLAYER_JOINED');
 
-                    onlinePlayers[data.sessionId] = new OnlinePlayer({
-                        scene: this,
-                        playerId: data.sessionId,
-                        key: data.sessionId,
-                        map: data.map,
-                        x: data.x,
-                        y: data.y
-                    });
+                    if (!onlinePlayers[data.sessionId]) {
+                        onlinePlayers[data.sessionId] = new OnlinePlayer({
+                            scene: this,
+                            playerId: data.sessionId,
+                            key: data.sessionId,
+                            map: data.map,
+                            x: data.x,
+                            y: data.y
+                        });
+                    }
                 }
                 if (data.event === 'PLAYER_LEFT') {
                     console.log('PLAYER_LEFT');
-                    onlinePlayers[data.sessionId].destroy();
+
+                    if (onlinePlayers[data.sessionId]) {
+                        onlinePlayers[data.sessionId].destroy();
+                        delete onlinePlayers[data.sessionId];
+                    }
                 }
                 if (data.event === 'PLAYER_MOVED') {
-                    console.log('PLAYER_MOVED');
+                    //console.log('PLAYER_MOVED');
 
                     // If player is in same map
                     if (this.mapName === onlinePlayers[data.sessionId].map) {
+
+                        // If player isn't registered in this scene (map changing bug..)
+                        if (!onlinePlayers[data.sessionId].scene) {
+                            onlinePlayers[data.sessionId] = new OnlinePlayer({
+                                scene: this,
+                                playerId: data.sessionId,
+                                key: data.sessionId,
+                                map: data.map,
+                                x: data.x,
+                                y: data.y
+                            });
+                        }
+                        // Start animation and set sprite position
                         onlinePlayers[data.sessionId].isWalking(data.position, data.x, data.y);
                     }
                 }
                 if (data.event === 'PLAYER_MOVEMENT_ENDED') {
                     // If player is in same map
                     if (this.mapName === onlinePlayers[data.sessionId].map) {
+
+                        // If player isn't registered in this scene (map changing bug..)
+                        if (!onlinePlayers[data.sessionId].scene) {
+                            onlinePlayers[data.sessionId] = new OnlinePlayer({
+                                scene: this,
+                                playerId: data.sessionId,
+                                key: data.sessionId,
+                                map: data.map,
+                                x: data.x,
+                                y: data.y
+                            });
+                        }
                         // Stop animation & set sprite texture
                         onlinePlayers[data.sessionId].stopWalking(data.position)
                     }
@@ -79,32 +110,14 @@ export class Scene2 extends Phaser.Scene {
                     // If another online player left current map
                     if (data.sessionId !== room.sessionId) {
                         console.log('Player left map!');
-                        onlinePlayers[data.sessionId].map = data.map;
-                        onlinePlayers[data.sessionId].destroy();
+                        if (onlinePlayers[data.sessionId]) {
+                            onlinePlayers[data.sessionId].destroy();
+                            delete onlinePlayers[data.sessionId];
+                        }
                     }
 
-                    // If you entered a new map
-                    if (data.sessionId === room.sessionId) {
-                        console.log('You entered new map!');
-
-                        //ToDo: This doesn't works...
-                        // I really need help with this.. :(
-                        // If a player is in a new map, the Scene is reloaded but won't see other players because onlinePlayers[sessionId].scene is undefined?
-                        Object.keys(data.players).forEach((sessionId) => {
-                            if (sessionId !== room.sessionId) {
-                                onlinePlayers[data.players[sessionId].sessionId] = new OnlinePlayer({
-                                    scene: this,
-                                    playerId: data.players[sessionId].sessionId,
-                                    key: data.players[sessionId].sessionId,
-                                    map: data.players[sessionId].map,
-                                    x: data.players[sessionId].x,
-                                    y: data.players[sessionId].y
-                                });
-                            }
-                        });
-                    }
-
-                    if (data.sessionId !== room.sessionId && this.mapName === onlinePlayers[data.sessionId].map) {
+                    // If another online player joins current map
+                    if (data.sessionId !== room.sessionId) {
                         console.log('Player joined new map!');
 
                         onlinePlayers[data.sessionId] = new OnlinePlayer({
