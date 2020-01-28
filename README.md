@@ -30,7 +30,7 @@ $ cd client && npm start
 After successfully install go to [http://localhost:8080](http://localhost:8080/)
 
 ### Known bugs
-**Online players won't load in new level (Needs help with this bug..)**\
+**Online players won't load in new level (50% fixed, needs help with this bug..)**\
 When a player enters a new level/map the [Phaser Scene](https://photonstorm.github.io/phaser3-docs/Phaser.Scene.html) reloads and a new tilemap will be loaded.
 But the current players in that map will not be loaded in that level ([see Code](https://github.com/aaron5670/PokeMMO-Online-Realtime-Multiplayer-Game/blob/master/client/src/Scene2.js#L107)).
 
