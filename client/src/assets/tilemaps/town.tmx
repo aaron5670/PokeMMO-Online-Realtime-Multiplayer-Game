@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="292">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="292">
  <editorsettings>
   <export target="tuxemon-town-v2.json" format="json"/>
  </editorsettings>
@@ -3519,6 +3519,8 @@
   <object id="291" name="route1" x="192.333" y="1248" width="319" height="32.3333">
    <properties>
     <property name="playerTexturePosition" value="back"/>
+    <property name="spawnX" value="350"/>
+    <property name="spawnY" value="1216"/>
    </properties>
   </object>
  </objectgroup>

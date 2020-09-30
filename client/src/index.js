@@ -1,4 +1,6 @@
 import Phaser from "phaser";
+import {TownScene} from "./TownScene";
+import {RouteScene} from "./RouteScene";
 import {Scene1} from "./Scene1";
 import {Scene2} from "./Scene2";
 
@@ -14,7 +16,8 @@ const Config = {
             gravity: {y: 0}
         }
     },
-    scene: [Scene1, Scene2],
+    scene: [TownScene, RouteScene],
+    // scene: [Scene1, Scene2],
 };
 
 export default new Phaser.Game(Config);

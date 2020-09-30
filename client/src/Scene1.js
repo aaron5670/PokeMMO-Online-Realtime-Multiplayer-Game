@@ -14,7 +14,7 @@ export class Scene1 extends Phaser.Scene {
     }
 
     preload() {
-        // Load Town
+        // Load TownScene
         this.load.image("TilesTown", TilesTown);
         this.load.tilemapTiledJSON("town", TownJSON);
 
