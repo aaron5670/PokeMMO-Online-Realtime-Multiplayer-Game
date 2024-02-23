@@ -1,12 +1,12 @@
+import TownJSON from "./assets/tilemaps/town.json";
 import TilesTown from "./assets/tilesets/tuxmon-sample-32px-extruded.png";
-import TownJSON from "./assets/tilemaps/town";
 
 import Route1JSON from "./assets/tilemaps/route1";
 
-import AtlasPNG from "./assets/atlas/atlas.png";
 import AtlasJSON from "./assets/atlas/atlas";
-import PlayersAtlasPNG from "./assets/images/players/players.png";
+import AtlasPNG from "./assets/atlas/atlas.png";
 import PlayersAtlasJSON from "./assets/atlas/players";
+import PlayersAtlasPNG from "./assets/images/players/players.png";
 
 export class Scene1 extends Phaser.Scene {
     constructor() {

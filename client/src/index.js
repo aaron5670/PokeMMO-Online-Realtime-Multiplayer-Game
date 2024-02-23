@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import {Scene1} from "./Scene1";
-import {Scene2} from "./Scene2";
+import { Scene1 } from "./Scene1";
+import { Scene2 } from "./Scene2";
 
 const Config = {
     type: Phaser.AUTO,

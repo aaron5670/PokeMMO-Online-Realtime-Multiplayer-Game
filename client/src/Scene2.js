@@ -1,8 +1,8 @@
 import Phaser from "phaser";
-import {onlinePlayers, room} from './SocketServer';
+import { onlinePlayers, room } from './SocketServer';
 
-import Player from "./Player";
 import OnlinePlayer from "./OnlinePlayer";
+import Player from "./Player";
 
 let cursors, socketKey;
 
@@ -125,7 +125,12 @@ export class Scene2 extends Phaser.Scene {
             })
         );
 
+
         this.map = this.make.tilemap({key: this.mapName});
+
+        console.log("this.mapName",this.mapName);
+        console.log("this.map",this.map);
+
 
         // Set current map Bounds
         this.scene.scene.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
@@ -135,10 +140,10 @@ export class Scene2 extends Phaser.Scene {
         const tileset = this.map.addTilesetImage("tuxmon-sample-32px-extruded", "TilesTown");
 
         // Parameters: layer name (or index) from Tiled, tileset, x, y
-        this.belowLayer = this.map.createStaticLayer("Below Player", tileset, 0, 0);
-        this.worldLayer = this.map.createStaticLayer("World", tileset, 0, 0);
-        this.grassLayer = this.map.createStaticLayer("Grass", tileset, 0, 0);
-        this.aboveLayer = this.map.createStaticLayer("Above Player", tileset, 0, 0);
+        this.belowLayer = this.map.createLayer("Below Player", tileset, 0, 0);
+        this.worldLayer = this.map.createLayer("World", tileset, 0, 0);
+        this.grassLayer = this.map.createLayer("Grass", tileset, 0, 0);
+        this.aboveLayer = this.map.createLayer("Above Player", tileset, 0, 0);
 
         this.worldLayer.setCollisionByProperty({collides: true});
 
@@ -192,8 +197,8 @@ export class Scene2 extends Phaser.Scene {
         if (cursors.left.isDown) {
             if (socketKey) {
                 if (this.player.isMoved()) {
-                    room.then((room) => room.send({
-                        event: "PLAYER_MOVED",
+                    room.then((room) => room.send(
+                         "PLAYER_MOVED",{
                         position: 'left',
                         x: this.player.x,
                         y: this.player.y
@@ -204,8 +209,8 @@ export class Scene2 extends Phaser.Scene {
         } else if (cursors.right.isDown) {
             if (socketKey) {
                 if (this.player.isMoved()) {
-                    room.then((room) => room.send({
-                        event: "PLAYER_MOVED",
+                    room.then((room) => room.send(
+                         "PLAYER_MOVED",{
                         position: 'right',
                         x: this.player.x,
                         y: this.player.y
@@ -219,8 +224,8 @@ export class Scene2 extends Phaser.Scene {
         if (cursors.up.isDown) {
             if (socketKey) {
                 if (this.player.isMoved()) {
-                    room.then((room) => room.send({
-                        event: "PLAYER_MOVED",
+                    room.then((room) => room.send(
+                        "PLAYER_MOVED",{
                         position: 'back',
                         x: this.player.x,
                         y: this.player.y
@@ -231,8 +236,8 @@ export class Scene2 extends Phaser.Scene {
         } else if (cursors.down.isDown) {
             if (socketKey) {
                 if (this.player.isMoved()) {
-                    room.then((room) => room.send({
-                        event: "PLAYER_MOVED",
+                    room.then((room) => room.send(
+                         "PLAYER_MOVED",{
                         position: 'front',
                         x: this.player.x,
                         y: this.player.y
@@ -244,16 +249,16 @@ export class Scene2 extends Phaser.Scene {
 
         // Horizontal movement ended
         if (Phaser.Input.Keyboard.JustUp(cursors.left) === true) {
-            room.then((room) => room.send({event: "PLAYER_MOVEMENT_ENDED", position: 'left'}))
+            room.then((room) => room.send( "PLAYER_MOVEMENT_ENDED",{ position: 'left'}))
         } else if (Phaser.Input.Keyboard.JustUp(cursors.right) === true) {
-            room.then((room) => room.send({event: "PLAYER_MOVEMENT_ENDED", position: 'right'}))
+            room.then((room) => room.send( "PLAYER_MOVEMENT_ENDED",{ position: 'right'}))
         }
 
         // Vertical movement ended
         if (Phaser.Input.Keyboard.JustUp(cursors.up) === true) {
-            room.then((room) => room.send({event: "PLAYER_MOVEMENT_ENDED", position: 'back'}))
+            room.then((room) => room.send( "PLAYER_MOVEMENT_ENDED", {position: 'back'}))
         } else if (Phaser.Input.Keyboard.JustUp(cursors.down) === true) {
-            room.then((room) => room.send({event: "PLAYER_MOVEMENT_ENDED", position: 'front'}))
+            room.then((room) => room.send( "PLAYER_MOVEMENT_ENDED", {position: 'front'}))
         }
     }
 
