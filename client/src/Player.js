@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import {onlinePlayers, room} from './SocketServer';
+import { room } from './SocketServer';
 
 
 export default class Player extends Phaser.GameObjects.Sprite {
@@ -132,8 +132,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.scene.events.off();
                 this.scene.scene.restart({map: world.name, playerTexturePosition: this.playerTexturePosition});
 
-                room.then((room) => room.send({
-                    event: "PLAYER_CHANGED_MAP",
+                room.then((room) => room.send(
+                     "PLAYER_CHANGED_MAP",{
                     map: world.name
                 }));
             }
